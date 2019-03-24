@@ -56,8 +56,9 @@ Route::get('/dashboard/student/register/{subject}','DashboardController@studentr
 Route::get('/admin','AdminController@dashboard');
 Route::get('/admin/login','AdminController@login')->name('adminlogin');
 Route::post('/admin/login','AdminController@loginpost');
-Route::resource('departments','CourseController');
-Route::resource('courses','DepartmentController');
-Route::resource('students','StudentController');
-Route::resource('teachers','TeacherController');
+
+Route::resource('/admin/departments','DepartmentController');
+Route::resource('/admin/courses','CourseController');
+Route::resource('/admin/students','StudentController');
+Route::resource('/admin/teachers','TeacherController');
 // Route::resource('s','DepartmentController');

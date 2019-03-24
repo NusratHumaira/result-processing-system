@@ -14,7 +14,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses= \App\Course::all();
+
+        return view('admin.courses.index')->with(['courses'=>$courses]);
     }
 
     /**
@@ -24,7 +26,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.courses.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = new \App\Course;
+        $course->name = $request->name;
+        $course->code = $request->code;
+        $course->semester = $request->semester;
+        $course->department_id = $request->department_id;
+        $course->save();
+        return redirect('/admin/courses');
     }
 
     /**
@@ -80,6 +88,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+        return redirect()->back();
     }
 }

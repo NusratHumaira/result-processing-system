@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>teacher add-course</title>
+    <title>admin</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#"><h3>TEACHER DASHBOARD</h3></a>
+        <a class="navbar-brand" href="#"><h3>ADMIN DASHBOARD</h3></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -59,23 +59,28 @@
 
     <aside style="background:#aabecf; width:250px;height:700px; float:left;">
         <ul>
-           <li> <a href="/dashboard/teacher/addcourse" class=""><h4>Add or Remove Courses</h4></a></l1>
+           <li> <a href="/admin/departments" class=""><h4>Departments</h4></a></l1>
         </ul>
         <ul>
-            <li><a href="/dashboard/teacher/result" class=""><h4>Result</h4></a></li>
+            <li><a href="/admin/courses" class=""><h4>Courses</h4></a></li>
+        </ul>
+        <ul>
+           <li> <a href="/admin/students" class=""><h4>Students</h4></a></l1>
+        </ul>
+        <ul>
+           <li> <a href="/admin/teachers" class=""><h4>Teacher</h4></a></l1>
+        </ul>
+        <ul>
+           <li> <a href="" class=""><h4>Results</h4></a></l1>
         </ul>
     </aside>
-
-
-    <div class="container">
-        @foreach($subjects as $subject)
-        <div><a href="/dashboard/teacher/result/{{$subject->id}}">{{$subject->course->name}}{{$subject->year}}</a></div>
-
-        @endforeach
+    <form action="/admin/departments" method="post">
         
-    </div>
-
-
+        <input type="text" name="name">
+@csrf
+        <input type="text" name="code">
+        <button type="submit">Create</button>
+    </form>
    <style type="text/css">
         li{
             text-decoration: none;

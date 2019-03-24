@@ -14,7 +14,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $departments= \App\Department::all();
+
+        return view('admin.departments.index')->with(['departments'=>$departments]);
     }
 
     /**
@@ -24,7 +26,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.departments.create');
     }
 
     /**
@@ -35,7 +37,11 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $department = new \App\Department;
+        $department->name = $request->name;
+        $department->code = $request->code;
+        $department->save();
+        return redirect('/admin/departments');
     }
 
     /**
@@ -80,6 +86,7 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        $department->delete();
+        return redirect()->back();
     }
 }
