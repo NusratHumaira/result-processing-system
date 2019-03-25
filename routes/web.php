@@ -61,4 +61,6 @@ Route::resource('/admin/departments','DepartmentController');
 Route::resource('/admin/courses','CourseController');
 Route::resource('/admin/students','StudentController');
 Route::resource('/admin/teachers','TeacherController');
-// Route::resource('s','DepartmentController');
+Route::resource('/admin/results','MarkController');
+Route::get('/admin/teachers/approve/{teacher}','TeacherController@approve');
+Route::get('/admin/teachers/block/{teacher}','TeacherController@block');

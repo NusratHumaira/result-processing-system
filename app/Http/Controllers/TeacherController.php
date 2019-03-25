@@ -14,7 +14,9 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        $teachers= \App\Teacher::all();
+
+        return view('admin.teachers.index')->with(['teachers'=>$teachers->load('user')]);
     }
 
     /**
@@ -36,6 +38,18 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         //
+    }
+    public function approve(Request $request,\App\Teacher $teacher)
+    {
+        $teacher->approved =1;
+        $teacher->save();
+        return redirect()->back();
+    }
+    public function block(Request $request,\App\Teacher $teacher)
+    {
+        $teacher->approved =0;
+        $teacher->save();
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +94,8 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        $teacher->user->delete();
+        $teacher->delete();
+        return redirect()->back();
     }
 }

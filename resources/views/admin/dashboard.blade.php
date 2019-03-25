@@ -71,7 +71,7 @@
            <li> <a href="/admin/teachers" class=""><h4>Teacher</h4></a></l1>
         </ul>
         <ul>
-           <li> <a href="" class=""><h4>Results</h4></a></l1>
+           <li> <a href="/admin/results" class=""><h4>Results</h4></a></l1>
         </ul>
     </aside>
 @if(session('msg'))

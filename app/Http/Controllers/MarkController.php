@@ -12,9 +12,35 @@ class MarkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+            if(isset($request->semester))
+            {
+                $courses= \App\Course::where('department_id',$request->department)->where('semester',$request->semester)->get(); 
+
+
+
+                $marks = \App\Mark::whereHas('subject',function($q)use ($request)
+                {
+                    $q->whereHas('course',function($q)use($request)
+                    {
+                        $q->where('department_id',$request->department)->where('semester',$request->semester);
+                    })->where('year',$request->year);
+                })->get();
+                // dd($marks);
+                $arr = [];
+                for($i=0;$i<count($marks);$i++){
+                    $arr[$marks[$i]->student_id] = 1;
+                }
+                
+                return view('admin.results.show')->with([
+                    'courses'=>$courses,
+                    'marks'=>$marks->load('subject'),
+                    'arr' => $arr
+                ]);
+            }
+            else
+            return view('admin.results.index');
     }
 
     /**
@@ -35,23 +61,7 @@ class MarkController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $mark new mark([
-
-            'subject_id' => $request->get(''),
-            'student_id' => $request->get(''),
-            'year' => $request->get('year'),
-            'tt1' => $request->get('tt1'),
-            'tt2' => $request->get('tt2'),
-            'tt3' => $request->get('tt3'),
-            'ttt' => $request->get('ttt'),
-            'part_a' => $request->get('part_a'),
-            'part_b' => $request->get('part_b'),
-            'attendance' => $request->get('attendance'),
-            'total' => $request->get('total')
-        ]);
-        $mark->save();
-        return redirect()->route('');
+       
     }
 
     /**

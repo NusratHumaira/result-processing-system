@@ -14,7 +14,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students= \App\Student::all();
+//dd($students->load('user'));
+        return view('admin.students.index')->with(['students'=>$students->load('user')]);
     }
 
     /**
@@ -57,7 +59,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        
     }
 
     /**
@@ -80,6 +82,8 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->user->delete();
+        $student->delete();
+        return redirect()->back();
     }
 }

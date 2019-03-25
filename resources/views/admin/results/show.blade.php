@@ -16,7 +16,6 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-           
              
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -44,22 +43,43 @@
            <li> <a href="/admin/teachers" class=""><h4>Teacher</h4></a></l1>
         </ul>
         <ul>
-           <li> <a href="" class=""><h4>Results</h4></a></l1>
+           <li> <a href="/admin/results" class=""><h4>Results</h4></a></l1>
         </ul>
     </aside>
-    @foreach($courses as $course)
-    <div>{{$course->id}} &nbsp;{{$course->name}} &nbsp;{{$course->code}} &nbsp; 
-        <form method="post" style="display: inline;" action="/admin/courses/{{$course->id}}">
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-danger">delete</button>
-        </form>
 
+
+    <div class="container">
+      <table class="table" style="width:1000px;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      @foreach($courses as $course)
+      <th scope="col">{{$course->code}}</th>
+      @endforeach
+      <th scope="col">Gpa</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+      @foreach($arr as $a => $v)
+      <tr>
+        <td scope="col">1</td>
+        @foreach($courses as $course)
+          @foreach($marks as $mark)
+            @if($mark->student_id==$a && $mark->subject->course_id==$course->id)
+            
+            <td scope="col">{{$mark->total}}</td> 
+
+            @endif
+          @endforeach
+        @endforeach
+        </tr>
+      @endforeach
+  </tbody>
+</table>
     </div>
-    @endforeach
-    <form action="/admin/courses/create">
-        <button class="btn btn-primary">Create </button>
-    </form>
+
+
    <style type="text/css">
         li{
             text-decoration: none;

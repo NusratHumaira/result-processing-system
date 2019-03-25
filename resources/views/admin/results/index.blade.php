@@ -16,7 +16,6 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-           
              
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -44,22 +43,64 @@
            <li> <a href="/admin/teachers" class=""><h4>Teacher</h4></a></l1>
         </ul>
         <ul>
-           <li> <a href="" class=""><h4>Results</h4></a></l1>
+           <li> <a href="/admin/results" class=""><h4>Results</h4></a></l1>
         </ul>
     </aside>
-    @foreach($courses as $course)
-    <div>{{$course->id}} &nbsp;{{$course->name}} &nbsp;{{$course->code}} &nbsp; 
-        <form method="post" style="display: inline;" action="/admin/courses/{{$course->id}}">
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-danger">delete</button>
-        </form>
 
+
+    <div class="container">
+        
+        <form action ="" >
+          <div class="form-row">
+            <div class="col">
+              <!--<input type="text" class="form-control" placeholder="Year" name="year">-->
+              <select class="form-control" name="year">
+                    <option>2019</option>
+                    <option>2020</option>
+                    <option>2021</option>
+                    <option>2022</option>
+                    <option>2023</option>
+                    <option>2024</option>
+                    <option>2025</option>
+                    <option>2026</option>
+                </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <!--<input type="text" class="form-control" placeholder="Semester" name="semester">-->
+               <select class="form-control" name="semester">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <select name="department" class="form-control" >
+                @foreach(\App\Department::all() as $d)
+                    <option value="{{$d->id}}">{{$d->name}}</option>
+
+                @endforeach  
+              </select>
+            </div>
+          </div>
+           <div class="form-row">
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Check Courses</button>
+            </div>
+          </div>
+
+        </form>
     </div>
-    @endforeach
-    <form action="/admin/courses/create">
-        <button class="btn btn-primary">Create </button>
-    </form>
+
+
    <style type="text/css">
         li{
             text-decoration: none;
