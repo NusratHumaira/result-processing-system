@@ -1,0 +1,15 @@
+
+
+@media (min-width: 768px){
+.sidebar .nav-item .nav-link span {
+    font-size: 1.3rem;
+    display: inline;
+}
+}
+
+@media (min-width: 768px){
+.sidebar.toggled .nav-item .nav-link span {
+    font-size: .9rem;
+    display: block;
+}
+}

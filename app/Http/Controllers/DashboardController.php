@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function student(){
-        return view('dashboard.student');
+        return view('layouts.student');
     }
     public function teacher(){
-        return view('dashboard.teacher');
+        return view('layouts.teacher');
     }
     public function teacheraddcourse(Request $request){
         if (!\Gate::allows('approved')) {

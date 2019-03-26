@@ -13,7 +13,7 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('admin.dashboard');
+        return view('layouts.admin');
     }
     public function login()
     {
@@ -27,6 +27,11 @@ class AdminController extends Controller
             return redirect()->intended('/admin');
         }
         return redirect('/admin/login');
+    }
+    public function logout()
+    {
+        \Auth ::guard('admin')->logout();
+         return redirect('/');
     }
     /**
      * Display a listing of the resource.
