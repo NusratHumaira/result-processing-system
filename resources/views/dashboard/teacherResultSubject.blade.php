@@ -31,7 +31,7 @@
       <td>{{$mark->part_b}}</td>
       <td>{{$mark->attendance}}</td>
       <td>{{$mark->total}}</td>
-      <td>Otto</td>
+      <td>{{$mark->gpa}}</td>
       <td>
         <a href="/dashboard/teacher/result/edit/{{$mark->id}}" class="btn btn-primary" role ="button">Edit</a>
       </td>

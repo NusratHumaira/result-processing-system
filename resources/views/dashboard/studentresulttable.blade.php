@@ -18,9 +18,10 @@
     </tr>
   </thead>
   <tbody>
+    <?php $i = 1; ?>
     @foreach($marks as $mark)
     <tr>
-      <th scope="row">1</th>
+      <th scope="row">{{$i++}}</th>
       <td>{{$mark->subject->course->code}}</td>
       <td>{{$mark->tt1}}</td>
       <td>{{$mark->tt2}}</td>
@@ -30,7 +31,7 @@
       <td>{{$mark->part_b}}</td>
       <td>{{$mark->attendance}}</td>
       <td>{{$mark->total}}</td>
-      <td>Otto</td>
+      <td>{{$mark->gpa}}</td>
       
     </tr>
     @endforeach

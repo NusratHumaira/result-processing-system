@@ -94,6 +94,16 @@ class DashboardController extends Controller
         $mark->part_b = $request->part_b;
         $mark->attendance = $request->attendance;
         $mark->total = $request->total;
+        if($request->total>=00.00) $mark->gpa = 0.00;
+        if($request->total>=40.00) $mark->gpa = 2.00;
+        if($request->total>=45.00) $mark->gpa = 2.25;
+        if($request->total>=50.00) $mark->gpa = 2.50;
+        if($request->total>=55.00) $mark->gpa = 2.75;
+        if($request->total>=60.00) $mark->gpa = 3.00;
+        if($request->total>=65.00) $mark->gpa = 3.25;
+        if($request->total>=70.00) $mark->gpa = 3.50;
+        if($request->total>=75.00) $mark->gpa = 3.75;
+        if($request->total>=80.00) $mark->gpa = 4.00;
         $mark->save();
         return redirect()->back();
     }

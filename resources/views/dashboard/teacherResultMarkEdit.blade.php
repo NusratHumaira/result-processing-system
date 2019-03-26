@@ -2,6 +2,20 @@
 @section('content')
     <h3><a href="/dashboard/teacher/result/{{$mark->subject_id}}"> << back to result sheet</a></h3>
     <div class="container">
+
+
+
+
+        <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+
+
+
+
+
        <div>{{$mark->student->reg_no}}</div> 
         <form action="" method="POST">
             @csrf
