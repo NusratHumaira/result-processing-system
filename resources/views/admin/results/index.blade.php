@@ -3,9 +3,9 @@
     <div class="container">
         
         <form action ="" >
-          <div class="form-row">
-            <div class="col">
-              <!--<input type="text" class="form-control" placeholder="Year" name="year">-->
+          <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Year:</label>
+            <div class="col-sm-10">
               <select class="form-control" name="year">
                     <option value="2019">2019</option>
                     <option value="2020">2020</option>
@@ -18,9 +18,9 @@
                 </select>
             </div>
           </div>
-          <div class="form-row">
-            <div class="col">
-              <!--<input type="text" class="form-control" placeholder="Semester" name="semester">-->
+          <div class="form-group row">
+          <label for="name" class="col-sm-2 col-form-label">Semester:</label>
+            <div class="col-sm-10">
                <select class="form-control" name="semester">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -33,8 +33,9 @@
                 </select>
             </div>
           </div>
-          <div class="form-row">
-            <div class="col">
+          <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Department Name:</label>
+            <div class="col-sm-10">
               <select name="department" class="form-control" >
                 @foreach(\App\Department::all() as $d)
                     <option value="{{$d->id}}">{{$d->name}}</option>

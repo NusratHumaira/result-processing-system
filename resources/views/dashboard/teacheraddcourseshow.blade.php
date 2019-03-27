@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <table class="table table-hover">
-            <thead class="table-info">
+            <thead class="table-primary">
     <tr>
         <th scope="col">Course code</th>
         <th scope="col">Register/Unregister</th>

@@ -47,6 +47,12 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
+        <a class="nav-link" href="/dashboard/student">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="/dashboard/student/addcourse">
           <i class="fas fa-fw fa-building"></i>
           <span>Add or Remove Courses</span></a>

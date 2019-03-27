@@ -7,10 +7,39 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function student(){
-        return view('layouts.student');
+        $student = \Auth::user()->userable;
+
+        // $total = 0;
+        // $cnt = 0;
+        $courses = $student->department->courses;
+        // $marks = \App\Mark::all();
+        // // dd($marks);
+      
+        
+        // foreach($courses as $course){
+        //     foreach($marks as $mark){
+        //         if($mark->student_id==$student->id && $mark->subject->course_id==$course->id){
+            
+
+        //              $cnt++; 
+        //              $total+= $mark->gpa*$mark->subject->course->credit;
+            
+        //         }
+        //     }
+            
+        // }
+        // // dd($cnt);
+        // $gpa = $total/$cnt;
+        // $total = 0;
+        // dd($gpa);
+          
+
+        return view('dashboard.student')->with(['cs'=>$courses]);
     }
     public function teacher(){
-        return view('layouts.teacher');
+        $subjects = \Auth::user()->userable->subjects;
+        
+        return view('dashboard.teacher')->with(['ss'=>$subjects]);
     }
     public function teacheraddcourse(Request $request){
         if (!\Gate::allows('approved')) {

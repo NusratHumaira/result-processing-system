@@ -1,8 +1,8 @@
 @extends('layouts.teacher')
 @section('content')
     <div class="container">
-    	 <table class="table" style="width:800px;">
-            <thead class="thead-dark">
+    	 <table class="table table-hover">
+            <thead class="table-primary">
     <tr>
         <th scope="col">Course</th>
         <th scope="col">Year</th>

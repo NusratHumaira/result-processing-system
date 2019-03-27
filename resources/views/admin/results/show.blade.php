@@ -137,7 +137,7 @@
     <div class="container">
      
     <table class="table table-hover" id="example">
-    <thead class="table-info">
+    <thead class="table-primary">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Reg No</th>
@@ -148,20 +148,30 @@
     </tr>
   </thead>
   <tbody>
-    
+    <?php 
+    $total = 0;
+    $cnt = 0;
+    $i = 1;
+     ?>
       @foreach($arr as $a => $v)
       <tr>
-        <td scope="col">1</td>
-        <!-- <td scope="col"></td> -->
+        <td scope="col">{{$i++}}</td>
+        <td scope="col">{{\App\Student::find($a)->reg_no}}</td>
         @foreach($courses as $course)
           @foreach($marks as $mark)
             @if($mark->student_id==$a && $mark->subject->course_id==$course->id)
             
             <td scope="col">{{$mark->total}}</td> 
+            <?php $cnt++; $total+= $mark->gpa*$mark->subject->course->credit ?>
 
             @endif
           @endforeach
         @endforeach
+        <td scope="col">{{$cnt == 0 ? 0 : ($total / $cnt)}}</td>
+        <?php 
+          $total = 0;
+          $cnt = 0;
+          ?> 
         </tr>
       @endforeach
   </tbody>

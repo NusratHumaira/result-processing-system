@@ -10,4 +10,8 @@ class Teacher extends Model
     {
         return $this->morphOne('App\User', 'userable');
     }
+    public function subjects()
+    {
+        return $this->hasMany('App\Subject');
+    }
 }
