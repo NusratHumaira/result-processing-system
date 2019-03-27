@@ -144,7 +144,7 @@
       @foreach($courses as $course)
       <th scope="col">{{$course->code}}</th>
       @endforeach
-      <th scope="col">Gpa</th>
+      <!-- <th scope="col">Gpa</th> -->
     </tr>
   </thead>
   <tbody>
@@ -161,13 +161,13 @@
           @foreach($marks as $mark)
             @if($mark->student_id==$a && $mark->subject->course_id==$course->id)
             
-            <td scope="col">{{$mark->total}}</td> 
+            <td scope="col">{{$mark->gpa}}</td> 
             <?php $cnt++; $total+= $mark->gpa*$mark->subject->course->credit ?>
 
             @endif
           @endforeach
         @endforeach
-        <td scope="col">{{$cnt == 0 ? 0 : ($total / $cnt)}}</td>
+        <!-- <td scope="col">{{$cnt == 0 ? 0 : ($total / $cnt)}}</td> -->
         <?php 
           $total = 0;
           $cnt = 0;
