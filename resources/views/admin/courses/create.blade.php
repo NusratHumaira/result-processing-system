@@ -29,6 +29,15 @@
     </div>
   </div>
 
+  
+  <div class="form-group row">
+    <label for="dept_id" class="col-sm-2 col-form-label">Credit</label>
+    <div class="col-sm-10">
+      <input type="text" name="credit" class="form-control" id="inputPassword3" placeholder="Enter credit" required>
+    </div>
+  </div>
+  
+
 
 
   <div class="form-group row">

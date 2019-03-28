@@ -8,33 +8,28 @@ class DashboardController extends Controller
 {
     public function student(){
         $student = \Auth::user()->userable;
-
-        // $total = 0;
-        // $cnt = 0;
-        $courses = $student->department->courses;
-        // $marks = \App\Mark::all();
-        // // dd($marks);
-      
+        $cgpas = $student->cgpas;
         
-        // foreach($courses as $course){
-        //     foreach($marks as $mark){
-        //         if($mark->student_id==$student->id && $mark->subject->course_id==$course->id){
-            
 
-        //              $cnt++; 
-        //              $total+= $mark->gpa*$mark->subject->course->credit;
-            
-        //         }
-        //     }
-            
-        // }
-        // // dd($cnt);
-        // $gpa = $total/$cnt;
-        // $total = 0;
-        // dd($gpa);
-          
 
-        return view('dashboard.student')->with(['cs'=>$courses]);
+
+        $ccgpa = 0;
+        $marks = \App\Student::find($student->id)->marks;
+        
+        $total = 0;
+        $total_credit = 0;
+        foreach($marks as $m){
+            $total += $m->gpa*$m->subject->course->credit;
+            $total_credit += $m->subject->course->credit;
+        }
+
+        if($total_credit==0) $ccgpa = 0;
+        else $ccgpa = round($total/$total_credit,2);
+
+        
+
+
+        return view('dashboard.student')->with(['cgpas'=>$cgpas, 'ccgpa' => $ccgpa]);
     }
     public function teacher(){
         $subjects = \Auth::user()->userable->subjects;
@@ -134,6 +129,23 @@ class DashboardController extends Controller
         if($request->total>=75.00) $mark->gpa = 3.75;
         if($request->total>=80.00) $mark->gpa = 4.00;
         $mark->save();
+        $cgpa = \App\Student::find($mark->student_id)->cgpas()->where('semester',$mark->subject->course->semester)->first();
+        // cgpa should be updated
+        $marks = \App\Student::find($mark->student_id)->marks()->whereHas('subject',function($q) use ($mark){
+            $q->whereHas('course', function($q) use ($mark){
+                $q->where('semester', $mark->subject->course->semester);
+            });
+        } )->with('subject.course')->get();
+       
+        $total = 0;
+        $total_credit = 0;
+        foreach($marks as $m){
+            $total += $m->gpa*$m->subject->course->credit;
+            $total_credit += $m->subject->course->credit;
+        }
+        
+        $cgpa->gpa = $total/$total_credit;
+        $cgpa->save();
         return redirect()->back();
     }
     public function studentresult(Request $request){

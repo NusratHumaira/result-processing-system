@@ -37,6 +37,6 @@
     @endforeach
   </tbody>
 </table>
-
+<div style="margin-left:40%;">{{$teachers->links()}}</div>
     </div>
  @endsection

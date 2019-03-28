@@ -5,16 +5,16 @@
         <div class="row justify-content-center">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" >
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Student</a>
+                <a class="nav-link {{session('who')!=1? 'active':''}}" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Student</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Teacher</a>
+                <a class="nav-link {{session('who')==1? 'active':''}}" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Teacher</a>
             </li>
 
         </ul>
         </div>
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="tab-pane fade  {{session('who')!=1? 'show active':''}}" id="home" role="tabpanel" aria-labelledby="home-tab">
 
                 <div class="col-md-8 justify-content-center ml-auto mr-auto">
                     <div class="card" style="background-color: #2f5a7d4a">
@@ -125,7 +125,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="tab-pane fade {{session('who')==1? 'show active':''}}" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
                 <div class="col-md-8 justify-content-center ml-auto mr-auto">
                     <div class="card" style="background-color: #2f5a7d4a">

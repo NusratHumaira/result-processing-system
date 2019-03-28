@@ -30,5 +30,6 @@
     @endforeach
   </tbody>
 </table>
+<div style="margin-left:40%;">{{$students->links()}}</div>
   </div>
 @endsection

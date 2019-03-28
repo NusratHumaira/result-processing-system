@@ -36,7 +36,9 @@ class MarkController extends Controller
                 return view('admin.results.show')->with([
                     'courses'=>$courses,
                     'marks'=>$marks->load('subject'),
-                    'arr' => $arr
+                    'arr' => $arr,
+                    'semester' => $request->semester,
+                    
                 ]);
             }
             else

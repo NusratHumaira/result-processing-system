@@ -14,9 +14,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students= \App\Student::all();
+        $students= \App\Student::with('user')->paginate(10);
 //dd($students->load('user'));
-        return view('admin.students.index')->with(['students'=>$students->load('user')]);
+        return view('admin.students.index')->with(['students'=>$students]);
     }
 
     /**

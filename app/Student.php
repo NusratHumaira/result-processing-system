@@ -18,4 +18,8 @@ class Student extends Model
     {
         return $this->belongsTo('App\Department');
     }
+    public function cgpas()
+    {
+        return $this->hasMany('App\Cgpa');
+    }
 }

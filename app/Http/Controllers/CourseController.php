@@ -14,7 +14,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses= \App\Course::all();
+        $courses= \App\Course::paginate(10);
 
         return view('admin.courses.index')->with(['courses'=>$courses]);
     }
@@ -42,6 +42,7 @@ class CourseController extends Controller
         $course->code = $request->code;
         $course->semester = $request->semester;
         $course->department_id = $request->department_id;
+        $course->credit = $request->credit;
         $course->save();
         return redirect('/admin/courses');
     }

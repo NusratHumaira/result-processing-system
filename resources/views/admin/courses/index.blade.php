@@ -27,6 +27,7 @@
     @endforeach
   </tbody>
 </table>
+    <div style="margin-left:40%;">{{$courses->links()}}</div>
     <form action="/admin/courses/create">
         <button class="btn btn-primary">Create </button>
     </form>

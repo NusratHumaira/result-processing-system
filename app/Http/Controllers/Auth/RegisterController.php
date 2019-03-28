@@ -49,6 +49,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         if(isset($data['reg_no'])) {
+            session()->flash('who',2);
             return Validator::make($data, [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -58,6 +59,7 @@ class RegisterController extends Controller
                 'address' => ['required'],
             ]);
         }
+        session()->flash('who',1);
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -86,7 +88,14 @@ class RegisterController extends Controller
             $student->department_id = $data['department'];
             $student->save();
             $student->user()->save($user);
+            for($i = 1; $i<9;$i++){
+                $cgpa = new \App\Cgpa;
+                $cgpa->semester = $i;
+                $cgpa->gpa = 0;
+                $student->cgpas()->save($cgpa);
+            }
             return $user;
+
         }
         $user = new \App\User;
         $teacher = new \App\Teacher;

@@ -21,6 +21,7 @@ class AdminController extends Controller
     }
     public function loginpost(Request $request)
     {
+        
         $credentials = $request->only('email', 'password');
 
         if (\Auth::guard('admin')->attempt($credentials)) {

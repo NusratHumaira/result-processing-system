@@ -35,7 +35,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         <div class="sidebar-brand-icon">
           <i class="fas fa-university"></i>
         </div>
@@ -144,7 +144,7 @@
       @foreach($courses as $course)
       <th scope="col">{{$course->code}}</th>
       @endforeach
-      <!-- <th scope="col">Gpa</th> -->
+      <th scope="col">Gpa</th>
     </tr>
   </thead>
   <tbody>
@@ -167,7 +167,11 @@
             @endif
           @endforeach
         @endforeach
-        <!-- <td scope="col">{{$cnt == 0 ? 0 : ($total / $cnt)}}</td> -->
+        @foreach(\App\Cgpa::all() as $cgpa)
+          @if($cgpa->student_id==$a && $cgpa->semester==$semester)
+            <td scope="col">{{$cgpa->gpa}}</td>
+          @endif
+        @endforeach
         <?php 
           $total = 0;
           $cnt = 0;
